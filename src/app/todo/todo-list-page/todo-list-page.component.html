@@ -1,0 +1,17 @@
+<div class="container">
+
+  <h1>Moje notatki</h1>
+  <mat-divider></mat-divider>
+  <div class="todo-list" >
+    <ng-container *ngFor="let todo of todos$ | async" >
+      <app-todo-list-item [item]="todo"></app-todo-list-item>
+    </ng-container>
+
+  </div>
+
+  <button mat-button (click)="loadTodos()">ładowanie</button>
+</div>
+<div class="add-btn">
+  <button mat-fab (click)="add()">Add</button>
+</div>
+

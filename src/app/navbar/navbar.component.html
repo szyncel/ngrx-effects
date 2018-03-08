@@ -1,0 +1,10 @@
+<mat-toolbar color="primary">
+
+  <span routerLink="/">Todo-app-ngrx</span>
+
+  <!-- This fills the remaining space of the current row -->
+  <span class="example-fill-remaining-space"></span>
+  <button *ngIf="user$ | async" mat-button (click)="logout()">Wyloguj</button>
+  <button *ngIf="!(user$ | async)" routerLink="/login" mat-button>Logowanie</button>
+  <button routerLink="/todos" mat-button>Notatki</button>
+</mat-toolbar>
