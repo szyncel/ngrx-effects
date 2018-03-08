@@ -3,13 +3,21 @@ import {Todo} from '../../models/todo';
 
 export enum TodoActionTypes {
   Add = '[Todo] Add',
+  ADD_SUCCESS = '[Todo] Add uccess',
   Remove = '[Todo] Remove',
   SHOW_ALL = '[Todo] show all',
-  SHOW_SUCCESS = '[Todo] show success'
+  SHOW_SUCCESS = '[Todo] show success',
 }
 
 export class Add implements Action {
   readonly type = TodoActionTypes.Add;
+
+  constructor(public payload: Todo) {
+  }
+}
+
+export class AddSuccess implements Action {
+  readonly type = TodoActionTypes.ADD_SUCCESS;
 
   constructor(public payload: Todo) {
   }
@@ -34,4 +42,4 @@ export class ShowSuccessAction implements Action {
 }
 
 
-export type TodoActions = Add | Remove | ShowAllAction | ShowSuccessAction;
+export type TodoActions = Add | Remove | ShowAllAction | ShowSuccessAction | AddSuccess;

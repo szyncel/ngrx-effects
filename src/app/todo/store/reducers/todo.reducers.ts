@@ -12,10 +12,9 @@ export const initialState: AppState = {todos: []};
 
 export function reducerTodo(state = initialState, action: TodoActions): AppState {
   switch (action.type) {
-    case TodoActionTypes.Add:
+    case TodoActionTypes.ADD_SUCCESS:
       return {
-        ...state,
-        todos: [...state.todos,
+        todos: [
           action.payload]
       };
     case TodoActionTypes.Remove:

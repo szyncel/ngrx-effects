@@ -6,6 +6,8 @@ import {Action} from '@ngrx/store';
 import * as fromActions from '../actions/todo.actions';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/mergeMap';
+import 'rxjs/add/operator/catch';
 
 
 @Injectable()
@@ -22,6 +24,15 @@ export class TodoEffects {
     .switchMap(() =>
       this.todoService.getAllTodos()
         .map(data => new fromActions.ShowSuccessAction(data))
+    );
+
+  @Effect()
+  createTodo$: Observable<Action> = this.actions$
+    .ofType<fromActions.Add>(fromActions.TodoActionTypes.Add)
+    .mergeMap(todo =>
+        this.todoService.createTodo(todo)
+          .map(res => new fromActions.AddSuccess(res))
+      // catch
     );
 
 }

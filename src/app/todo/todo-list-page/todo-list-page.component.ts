@@ -5,6 +5,7 @@ import {AppState, getTodos} from '../store/reducers/todo.reducers';
 import {Store} from '@ngrx/store';
 import {Observable} from 'rxjs/Observable';
 import {ShowAllAction} from '../store/actions/todo.actions';
+import {TodoService} from '../todo.service';
 
 
 @Component({
@@ -16,7 +17,8 @@ export class TodoListPageComponent implements OnInit {
   todos$: Observable<any>;
 
   constructor(public dialog: MatDialog,
-              private store: Store<AppState>) {
+              private store: Store<AppState>,
+              private todoService: TodoService) {
     this.todos$ = this.store.select(getTodos);
 
   }
@@ -33,6 +35,10 @@ export class TodoListPageComponent implements OnInit {
 
   loadTodos() {
     this.store.dispatch(new ShowAllAction());
+  }
+
+  create() {
+    this.todoService.createTodo(({id: 12, title: 'trlal', note: 'asdasdasd'})).subscribe(res => console.log(res));
   }
 
   ngOnInit() {
